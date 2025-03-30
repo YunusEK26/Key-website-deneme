@@ -15,30 +15,98 @@ export default function KonteynerEvForm() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>KEY KEY Makina - Konteyner Ev Konfigüratörü</h1>
-      <form>
-        <div><label>Ev Alanı (m²)</label><input name="area" type="number" value={formData.area} onChange={handleChange} /></div>
-        <div><label>Panel Kalınlığı</label><input name="thickness" value={formData.thickness} onChange={handleChange} /></div>
-        <div><label>Renk</label><input name="color" value={formData.color} onChange={handleChange} /></div>
-        <div><label>Zemin</label><input name="floor" value={formData.floor} onChange={handleChange} /></div>
-        <div><label>İzolasyon</label><input name="insulation" value={formData.insulation} onChange={handleChange} /></div>
-        <div><label>Oda Sayısı</label><input name="rooms" value={formData.rooms} onChange={handleChange} /></div>
+    <div className="bg-white p-6 rounded-2xl shadow-md w-full max-w-xl">
+      <form className="space-y-4">
+        {[
+          { name: "area", label: "Ev Alanı (m²)", type: "number" },
+          { name: "thickness", label: "Panel Kalınlığı" },
+          { name: "color", label: "Renk" },
+          { name: "floor", label: "Zemin" },
+          { name: "insulation", label: "İzolasyon" },
+          { name: "rooms", label: "Oda Sayısı" },
+        ].map((field) => (
+          <div key={field.name}>
+            <label className="block font-medium mb-1">{field.label}</label>
+            <input
+              type={field.type || "text"}
+              name={field.name}
+              value={formData[field.name]}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder={field.label}
+            />
+          </div>
+        ))}
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Teklif Göster
+        </button>
       </form>
+
       <a
         href="https://wa.me/905555555555"
         target="_blank"
         rel="noopener noreferrer"
-        style={{
-          position: "fixed",
-          bottom: "20px",
-          right: "20px",
-          backgroundColor: "#25D366",
-          color: "#fff",
-          padding: "10px 20px",
-          borderRadius: "50px",
-          textDecoration: "none",
-        }}
+        className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-green-600 transition"
+      >
+        WhatsApp
+      </a>
+    </d iv>
+  );
+} React, { useState } from "react";
+
+export default function KonteynerEvForm() {
+  const [formData, setFormData] = useState({
+    area: "",
+    thickness: "",
+    color: "",
+    floor: "",
+    insulation: "",
+    rooms: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <div className="bg-white p-6 rounded-2xl shadow-md w-full max-w-xl">
+      <form className="space-y-4">
+        {[
+          { name: "area", label: "Ev Alanı (m²)", type: "number" },
+          { name: "thickness", label: "Panel Kalınlığı" },
+          { name: "color", label: "Renk" },
+          { name: "floor", label: "Zemin" },
+          { name: "insulation", label: "İzolasyon" },
+          { name: "rooms", label: "Oda Sayısı" },
+        ].map((field) => (
+          <div key={field.name}>
+            <label className="block font-medium mb-1">{field.label}</label>
+            <input
+              type={field.type || "text"}
+              name={field.name}
+              value={formData[field.name]}
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder={field.label}
+            />
+          </div>
+        ))}
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Teklif Göster
+        </button>
+      </form>
+
+      <a
+        href="https://wa.me/905555555555"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-green-600 transition"
       >
         WhatsApp
       </a>

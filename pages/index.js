@@ -1,4 +1,4 @@
-importimport Head from 'next/head'
+import Head from 'next/head'
 import KonteynerEvForm from '@/components/KonteynerEvForm'
 
 export default function Home() {
